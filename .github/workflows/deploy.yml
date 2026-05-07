@@ -1,0 +1,28 @@
+name: Deploy Backend SGQUI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy backend via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            cd ${{ secrets.SERVER_ROOT }}/sgqui_back_v2
+            git pull origin master
+
+            cd ${{ secrets.SERVER_ROOT }}
+            pm2 restart sgqui-dev-back
+            pm2 save

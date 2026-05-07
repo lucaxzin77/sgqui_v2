@@ -1,0 +1,14 @@
+# dependencies
+node_modules/
+
+# Ignore .env
+.env
+
+# Ignore database files
+*.sql
+
+# Ignore o dir docs
+docs/
+
+# Ignore nota.txt files
+nota.txt
