@@ -1,4 +1,4 @@
-import * as produtosService from '../services/produtos.service.js';
+import * as produtosService from './produtos.service.js';
 import * as responses from '../../../core/utils/responses.js';
 import { asyncHandler } from '../../../core/utils/asyncHandler.js';
 

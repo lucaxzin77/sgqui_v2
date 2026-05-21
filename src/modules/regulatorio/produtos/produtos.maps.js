@@ -1,4 +1,4 @@
-import * as produtos from '../controllers/produtos.controllers.js';
+import * as produtos from '../produtos/produtos.controllers.js';
 
 export default [
   {

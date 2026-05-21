@@ -146,7 +146,7 @@ export const consultarPorId = async (id) => {
 
 export const consultarPorMP = async (mp_id) => {
     try {
-        const cmdSql = 'SELECT * FROM garantia WHERE mp_id = ?;';
+        const cmdSql = 'SELECT * FROM garantia WHERE materia_prima = ?;';
         const [dados] = await pool.execute(cmdSql, [mp_id]);
         return dados;
     } 
