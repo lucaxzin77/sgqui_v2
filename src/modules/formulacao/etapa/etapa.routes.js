@@ -53,7 +53,7 @@ export default [
 		codigo: 'etapa:alterarOrdem',
 		metodo: 'PUT',
 		modulo: 'formulacao',
-		rota: 'etapa/projeto/ordenar/',
+		rota: 'etapa/projeto/ordenar',
 		middlewares: [autenticar, autorizar],
 		functionExec: etapa.alterarOrdem,
 		recurso: 'Projetos',

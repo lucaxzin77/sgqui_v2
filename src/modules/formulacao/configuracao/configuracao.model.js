@@ -31,7 +31,7 @@ export const alterar = async (configuracao={}, responsavel) => {
             UPDATE 
                 configuracao SET 
                 value = ?, 
-                status = JSON_MERGE_PRESERVE(JSON_ARRAY(JSON_OBJECT('data_alteracao', (SELECT CURRENT_TIMESTAMP), 'id_responsavel', '${responsavel}')),status) 
+                status = JSON_MERGE_PRESERVE(JSON_ARRAY(JSON_OBJECT('data_alteracao', (SELECT CURRENT_TIMESTAMP), 'id_responsavel', ?)),status) 
             WHERE 
                 \`key\` = ?;            
         `;

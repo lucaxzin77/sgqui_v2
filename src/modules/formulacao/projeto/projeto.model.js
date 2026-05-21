@@ -314,13 +314,16 @@ export const consultarPorData = async (data_inicio="", data_termino="") => {
     try {
         const cmdSql = `
         SELECT * FROM projeto
-        WHERE (data_inicio BETWEEN '${data_inicio}' AND '${data_termino}')
-           OR (data_termino BETWEEN '${data_inicio}' AND '${data_termino}')
-           OR (data_inicio <= '${data_inicio}' AND data_termino >= '${data_termino}')
-        ORDER BY updatedAt DESC
-        ;
+        WHERE (data_inicio BETWEEN ? AND ?)
+           OR (data_termino BETWEEN ? AND ?)
+           OR (data_inicio <= ? AND data_termino >= ?)
+        ORDER BY updatedAt DESC;
         `;
-        const [dados] = await pool.execute(cmdSql);
+        const [dados] = await pool.execute(cmdSql, [
+          data_inicio, data_termino,
+          data_inicio, data_termino,
+          data_inicio, data_termino
+        ]);
         return dados;
     } 
     catch (error) {

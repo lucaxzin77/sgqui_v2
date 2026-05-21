@@ -53,7 +53,7 @@ export default [
 		codigo: 'etapa_mp:alterarOrdem',
 		metodo: 'PUT',
 		modulo: 'formulacao',
-		rota: 'etapa_mp/ordenar/m_p/',
+		rota: 'etapa_mp/ordenar/:id',
 		middlewares: [autenticar, autorizar],
 		functionExec: etapa_mp.alterarOrdem,
 		recurso: 'Projetos',

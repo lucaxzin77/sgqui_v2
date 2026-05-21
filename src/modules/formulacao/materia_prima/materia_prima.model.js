@@ -102,8 +102,8 @@ export const consultarMP_precentual_nutriente = async (nutrienteID=0,percentual=
             materia_prima.id 		as mp_id,
             materia_prima.nome 		as mp_nome,
             materia_prima.formula 	as mp_formula,
-            (${percentual} * 100) / garantia.percentual 	as percentual,
-            nutriente_percentualComposicao(materia_prima.id, ((${percentual} * 100) / garantia.percentual)) as composicao
+            (? * 100) / garantia.percentual 	as percentual,
+            nutriente_percentualComposicao(materia_prima.id, ((? * 100) / garantia.percentual)) as composicao
         FROM
             nutriente
             JOIN
@@ -111,10 +111,15 @@ export const consultarMP_precentual_nutriente = async (nutrienteID=0,percentual=
             JOIN
             materia_prima ON garantia.materia_prima = materia_prima.id
         WHERE
-            nutriente.id = ${nutrienteID} AND ((${percentual} * 100) / garantia.percentual) < 100
+            nutriente.id = ? AND ((? * 100) / garantia.percentual) < 100
             ORDER BY percentual ASC
         `;
-        const [data] = await pool.execute(cmdSql);
+        const [data] = await pool.execute(cmdSql, [
+            percentual,
+            percentual,
+            nutrienteID,
+            percentual
+        ]);
         return data;
     } 
     catch (error) {
